@@ -17,7 +17,7 @@ MonoBehaviour:
   m_RendererType: 1
   m_RendererData: {fileID: 0}
   m_RendererDataList:
-  - {fileID: 11400000, guid: 3bc198ecd85c0d748bd0ffd46a59552f, type: 2}
+  - {fileID: 11400000, guid: 9d34b3e3fd9b31c46a08703e521990ea, type: 2}
   m_DefaultRendererIndex: 0
   m_RequireDepthTexture: 0
   m_RequireOpaqueTexture: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_ShadowNormalBias: 1
   m_AnyShadowsSupported: 1
   m_SoftShadowsSupported: 0
-  m_ConservativeEnclosingSphere: 1
+  m_ConservativeEnclosingSphere: 0
   m_NumIterationsEnclosingSphere: 64
   m_AdditionalLightsCookieResolution: 2048
   m_AdditionalLightsCookieFormat: 3
