@@ -88,8 +88,6 @@ public struct UserInfo
 [Serializable]
 public struct ReceiveUserInfo
 {
-    public int status;
-    public string message;
     public UserInfo data;
 }
 

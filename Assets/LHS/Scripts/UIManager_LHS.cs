@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class UIManager_LHS : MonoBehaviour
 {
     public static UIManager_LHS instance;
@@ -9,6 +9,7 @@ public class UIManager_LHS : MonoBehaviour
     [SerializeField] GameObject gameStartUI;
     [SerializeField] GameObject gameSliderUI;
     [SerializeField] GameObject FishInfoUI;
+    [SerializeField] Text fishInfo;
 
     Animator anim;
 
@@ -39,8 +40,10 @@ public class UIManager_LHS : MonoBehaviour
     }
 
     //물고기 잡았을때 UI
-    public void FishGrabUI()
+    public void FishGrabUI(string fishName)
     {
+        fishInfo.text = fishName + "를(을) 잡았다.";
+
         //애니메이션으로 나왔다 들어가기
         //FishInfoUI.SetActivea(true);
        // FishInfoUI.SetActive(true);
