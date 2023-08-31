@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 4900907186100975675}
   - component: {fileID: 4900907186100975674}
   - component: {fileID: 4900907186100975678}
+  - component: {fileID: 7071417374733198167}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas(CJH)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,6 +129,24 @@ MonoBehaviour:
       password: 
       nickname: 
       money: 0
+--- !u!114 &7071417374733198167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4900907186100975672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a890221b78d4ae448b07d8f01d0f087d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstStage: {fileID: 0}
+  secondStage: {fileID: 0}
+  thirdStage: {fileID: 0}
+  moveButton: {fileID: 0}
+  adventureButton: {fileID: 0}
+  exitButton: {fileID: 0}
 --- !u!1 &4900907186168487538
 GameObject:
   m_ObjectHideFlags: 0
