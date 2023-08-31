@@ -51,6 +51,8 @@ public class BaitMove_LHS : MonoBehaviour
             transform.position = fishPos;
             Debug.Log("물고기 잡았다");
 
+
+
             //줄도 팽팽해지게
             /*Rop_LHS ropeObj = rope.GetComponent<Rop_LHS>();
             ropeObj.SetsegmentLength(5);*/

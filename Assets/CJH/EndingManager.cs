@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class EndingManager : MonoBehaviour
@@ -47,22 +48,137 @@ public class EndingManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             print("1111");
+
+            ////이미지가 열린다.
+            //HttpInfo info = new HttpInfo();
+            //info.Set(RequestType.POST, "/fish", (DownloadHandler downloadHandler) =>
+            //{
+            //    print("NetFishInfo : " + downloadHandler.text);
+
+            //    JsonList<NetFishInfo> jsonList = JsonUtility.FromJson<JsonList<NetFishInfo>>(downloadHandler.text);
+
+            //    //이미지 다운로드
+            //    for (int i = 0; i < 1; i++)
+            //    {
+            //        DownloadVillageImage(jsonList.data[i].image, i);
+            //    }
+
+            //});
+            ////info 의 정보로 요청을 보내자
+            //HttpManager.Get().SendRequest(info);
             
+
             firstStage.SetActive(true);
             //패널도 켜진다.
             panel.SetActive(true );
         }
     }
+    public void DownloadFishImage(string imageUrl)
+    {
+        HttpInfo info = new HttpInfo();
+        info.Set(
+            RequestType.TEXTURE,
+            imageUrl,
+            null,
+            false);
+        //info.imageId = imageId;
+        info.onReceiveImage = (DownloadHandler downloadHandler, int idx) => {
+
+            Texture2D texture = ((DownloadHandlerTexture)downloadHandler).texture;
+            villageImages[idx].sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+
+        };
+
+        HttpManager.Get().SendRequest(info);
+    }
+
+
     public void OnChangeButton()
     {
-        firstStage.SetActive(false);
-        secondStage.SetActive(true);
+
+        HttpInfo info = new HttpInfo();
+        info.Set(RequestType.GET, "/village/flounder", (DownloadHandler downloadHandler) =>
+        {
+            print("NetVillage : " + downloadHandler.text);
+
+            JsonList<NetVillageInfo> jsonList = JsonUtility.FromJson<JsonList<NetVillageInfo>>(downloadHandler.text);
+
+            //이미지 다운로드
+            for (int i = 0; i < jsonList.data.Count; i++)
+            {
+                DownloadVillageImage(jsonList.data[i].image, i);
+            }
+
+            firstStage.SetActive(false);
+            secondStage.SetActive(true);
+        });
+
+
+        //info 의 정보로 요청을 보내자
+        HttpManager.Get().SendRequest(info);
     }
+
+    public Image[] villageImages; 
+    public void DownloadVillageImage(string imageUrl, int imageId)
+    {
+        HttpInfo info = new HttpInfo();
+        info.Set(
+            RequestType.TEXTURE,
+            imageUrl,
+            null,
+            false);
+        info.imageId = imageId;
+        info.onReceiveImage = (DownloadHandler downloadHandler, int idx) => {
+
+            Texture2D texture = ((DownloadHandlerTexture)downloadHandler).texture;
+            villageImages[idx].sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+
+        };
+
+        HttpManager.Get().SendRequest(info);
+    }
+
     public void OnAdventureButton()
     {
-        secondStage.SetActive(false);
-        thirdStage.SetActive(true);
+        HttpInfo info = new HttpInfo();
+        info.Set(RequestType.GET, "/activity/name", (DownloadHandler downloadHandler) =>
+        {
+            print("NetActivity : " + downloadHandler.text);
+
+            JsonList<NetActivityInfo> jsonList = JsonUtility.FromJson<JsonList<NetActivityInfo>>(downloadHandler.text);
+
+            //이미지 다운로드
+            for (int i = 0; i < 3; i++)
+            {
+                DownloadActivityImage(jsonList.data[i].image, i);
+                //print(i + " : " + jsonList.data[i].image);
+            }
+            secondStage.SetActive(false);
+            thirdStage.SetActive(true);
+        });
+        //info 의 정보로 요청을 보내자
+        HttpManager.Get().SendRequest(info);
     }
+    public Image[] ActivityImages;
+    public void DownloadActivityImage(string imageUrl, int imageId)
+    {
+        HttpInfo info = new HttpInfo();
+        info.Set(
+            RequestType.TEXTURE,
+            imageUrl,
+            null,
+            false);
+        info.imageId = imageId;
+        info.onReceiveImage = (DownloadHandler downloadHandler, int idx) => {
+
+            Texture2D texture = ((DownloadHandlerTexture)downloadHandler).texture;
+            ActivityImages[idx].sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+
+        };
+
+        HttpManager.Get().SendRequest(info);
+    }
+
     public void OnExitButton()
     {
         thirdStage.SetActive(false);

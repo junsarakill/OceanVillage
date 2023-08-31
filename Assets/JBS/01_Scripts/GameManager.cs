@@ -43,10 +43,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-
-
-
-
         //@@=========테스트용=============
         //1번 누르면 낚시 모드 시작
         if(Input.GetKeyDown(KeyCode.Alpha1))

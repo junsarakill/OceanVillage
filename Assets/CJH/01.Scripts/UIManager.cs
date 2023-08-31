@@ -19,16 +19,59 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            NetSignUp();
+        }
 
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            NetFish();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha7))
+        {
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            //NetActivity();
+        }
     }
 
-    public void OnClickGet()
+    public void NetActivity()
     {
-        //todos
         HttpInfo info = new HttpInfo();
-        info.Set(RequestType.GET, "/todos", (DownloadHandler downloadHandler) => {
-            print("OnReceiveGet : " + downloadHandler.text);
+        info.Set(RequestType.GET, "/activity/name", (DownloadHandler downloadHandler) => {
+            print("NetActivity : " + downloadHandler.text);
+
+            JsonList<NetActivityInfo> jsonList = JsonUtility.FromJson<JsonList<NetActivityInfo>>(downloadHandler.text);
+
+            //jsonList.data[0].price
+
+
         });
+
+
+        //info 의 정보로 요청을 보내자
+        HttpManager.Get().SendRequest(info);
+    }
+
+    ///village/flounder
+    
+
+    public void NetFish()
+    {
+        HttpInfo info = new HttpInfo();
+        info.Set(RequestType.POST, "/fish", (DownloadHandler downloadHandler) => {
+            print("NetFish : " + downloadHandler.text);
+        });
+
+        NetFishInfo body = new NetFishInfo();
+        //body.nickname = "아카데미";
+
+
+        info.body = JsonUtility.ToJson(body);
 
         //info.Set(RequestType.GET, "/todos", OnReceiveGet);
 
@@ -43,19 +86,18 @@ public class UIManager : MonoBehaviour
 
     
     // userId: \"Clementine Bauch\", password = \"Samantha\", nickname: \"Nathan@yesenia.net\" 
-    public void PostTest()
+    public void NetSignUp()
     {
         HttpInfo info = new HttpInfo();
 
         info.Set(RequestType.POST, "/sign-up", (DownloadHandler downloadHandler) => {
             //Post 데이터 전송했을 때 서버로부터 응답 옵니다~
-            print(downloadHandler.text);
+            print("NetSignUp : " +downloadHandler.text);
             userInfo = JsonUtility.FromJson<ReceiveUserInfo>(downloadHandler.text);
         });
 
         SignUpInfo signUpInfo = new SignUpInfo();
-        signUpInfo.userId = "메타";
-        signUpInfo.password = 12345.ToString();
+        
         signUpInfo.nickname = "아카데미";
 
         info.body = JsonUtility.ToJson(signUpInfo);
