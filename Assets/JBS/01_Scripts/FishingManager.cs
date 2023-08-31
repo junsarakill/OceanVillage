@@ -126,6 +126,7 @@ public class FishingManager : MonoBehaviour
     //물고기 잡은 뒤 처리
     public IEnumerator IECatchFish()
     {
+        print("잡기 실행됨");
         isSpawned = false;
         Destroy(GameObject.FindWithTag("Fish"));
         //임시 팝업 이미지 활성화

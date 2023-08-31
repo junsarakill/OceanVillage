@@ -22,7 +22,7 @@ public class FishMove_LHS : MonoBehaviour
         {
             Debug.Log("물고기 미끼위치로" + objectGrab.position);
             transform.position = objectGrab.position;
-
+            StartCoroutine(FishingManager.instance.IECatchFish());
             //StartCoroutine(DestroyFish());
         }
     }

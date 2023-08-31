@@ -55,6 +55,8 @@ public class PlayerMove : MonoBehaviour
     //낚시 위치
     [SerializeField]Transform fishingPoint;
 
+    [SerializeField] GameObject PlayerBody;
+
     private void Awake() {
         if(instance == null)
             instance = this;
@@ -159,10 +161,12 @@ public class PlayerMove : MonoBehaviour
         if(pStat.playerMode == PlayerStat.PlayerMode.MOVE)
         {
             fishingRod.SetActive(false);
+            PlayerBody.SetActive(false);
         }
         else if(pStat.playerMode == PlayerStat.PlayerMode.FISHING)
         {
             fishingRod.SetActive(true);
+            PlayerBody.SetActive(true);
         }
     }
 

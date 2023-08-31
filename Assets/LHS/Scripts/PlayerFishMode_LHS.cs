@@ -15,7 +15,7 @@ public class PlayerFishMode_LHS: MonoBehaviour
             if(GameManager_LHS.instance.isfishSave == true)
             {
                 Debug.Log("스페이스1번");
-                bait.GetComponent<BaitMove_LHS>().SetPos();
+                //bait.GetComponent<BaitMove_LHS>().SetPos();
 
                 gameObject.GetComponentInChildren<FishRodRot_LHS>().isRodRot = true;
                 gameObject.GetComponentInChildren<BaitMove_LHS>().isBaitMove = false;
