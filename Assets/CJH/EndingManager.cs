@@ -6,6 +6,15 @@ using UnityEngine.UI;
 
 public class EndingManager : MonoBehaviour
 {
+
+    public static EndingManager instance;
+    
+    private void Awake() {
+        if(instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
     //내가 UI를 만든거를 순서대로 출현시켜
     //9번을 누르면 
     //내가 게임을 끝났다는 거를 엔딩매니저에 알려주면 나온다
@@ -40,14 +49,9 @@ public class EndingManager : MonoBehaviour
 
     }
 
-
-    // Update is called once per frame
-    void Update()
+    public void ResultUI()
     {
-        //9번 키를 누르면 UI가 켜진다.
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            print("1111");
+        print("1111");
 
             ////이미지가 열린다.
             //HttpInfo info = new HttpInfo();
@@ -71,6 +75,15 @@ public class EndingManager : MonoBehaviour
             firstStage.SetActive(true);
             //패널도 켜진다.
             panel.SetActive(true );
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //9번 키를 누르면 UI가 켜진다.
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            ResultUI();
         }
     }
     public void DownloadFishImage(string imageUrl)

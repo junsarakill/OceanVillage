@@ -16,7 +16,7 @@ public class PlayerStat
 
     public enum PlayerMode
     {
-        MOVE, FISHING
+        MOVE, FISHING, RESULT
     }
     
     public PlayerMode playerMode;
@@ -70,9 +70,6 @@ public class PlayerMove : MonoBehaviour
 
         //초기 위치 스폰 포인트로 이동
         transform.SetLocalPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
-
-        //낚시대 비활성화
-        fishingRod.SetActive(false);
 
         //값 초기화
         originPos = new Vector3(0,0,0);
@@ -144,7 +141,7 @@ public class PlayerMove : MonoBehaviour
     //낚시 모드 종료
     public void EndFishing()
     {
-        ChangeState(PlayerStat.PlayerMode.MOVE);
+        ChangeState(PlayerStat.PlayerMode.RESULT);
         //모든 물고기 제거
         GameObject[] fishes = GameObject.FindGameObjectsWithTag("Fish");
         foreach(GameObject fish in fishes)
@@ -154,6 +151,8 @@ public class PlayerMove : MonoBehaviour
         //원래 위치로 이동
         transform.SetLocalPositionAndRotation(originPos, originRot);
         mCam.rotation = mCamOriginRot;
+        
+        EndingManager.instance.ResultUI();
     }
 
     //상태 변경
@@ -164,12 +163,10 @@ public class PlayerMove : MonoBehaviour
 
         if(pStat.playerMode == PlayerStat.PlayerMode.MOVE)
         {
-            fishingRod.SetActive(false);
             PlayerBody.SetActive(false);
         }
         else if(pStat.playerMode == PlayerStat.PlayerMode.FISHING)
         {
-            fishingRod.SetActive(true);
             PlayerBody.SetActive(true);
         }
     }
