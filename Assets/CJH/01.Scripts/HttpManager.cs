@@ -14,50 +14,6 @@ public class JsonList<T>
     public List<T> data;
 }
 
-//{
-//    "status": 201,
-//  "message": "생선 잡은 유저",
-//  "data": {
-//        "userDTO": {
-//            "nickname": "abc123",
-//      "money": 20000
-//        },
-//    "fishDTO": {
-//            "name": "갈치",
-//      "price": 20000
-//    }
-//    }
-//}
-//[Serializable]
-//public struct UserInfo
-//{
-//    public int status;
-//    public string message;
-//    public data data;
-//}
-//[Serializable]
-//public struct data
-//{
-//    public userDTO user;
-//    public fishDTO fish;
-//    public int price;
-
-//}
-//[Serializable]
-//public struct userDTO
-//{
-//    public string nickname;
-//    public int money;
-//}
-//[Serializable]
-//public struct fishDTO
-//{
-//    public string name;
-//    public int price;
-//}
-
-
-
 [Serializable]
 public struct SignUpInfo
 {   
@@ -169,7 +125,7 @@ public class HttpInfo
         bool useDefaultUrl = true)
     {
         requestType = type;
-        if (useDefaultUrl) url = "http://192.168.17.59:8888";
+        if (useDefaultUrl) url = "http://192.168.242.59:8888";
         url += u;
         onReceive = callback;
     }

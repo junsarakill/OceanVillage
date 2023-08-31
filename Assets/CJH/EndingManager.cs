@@ -48,49 +48,51 @@ public class EndingManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             print("1111");
-
-            ////이미지가 열린다.
-            //HttpInfo info = new HttpInfo();
-            //info.Set(RequestType.POST, "/fish", (DownloadHandler downloadHandler) =>
-            //{
-            //    print("NetFishInfo : " + downloadHandler.text);
-
-            //    JsonList<NetFishInfo> jsonList = JsonUtility.FromJson<JsonList<NetFishInfo>>(downloadHandler.text);
-
-            //    //이미지 다운로드
-            //    for (int i = 0; i < 1; i++)
-            //    {
-            //        DownloadVillageImage(jsonList.data[i].image, i);
-            //    }
-
-            //});
-            ////info 의 정보로 요청을 보내자
-            //HttpManager.Get().SendRequest(info);
-            
-
             firstStage.SetActive(true);
             //패널도 켜진다.
-            panel.SetActive(true );
+            panel.SetActive(true);
         }
     }
-    public void DownloadFishImage(string imageUrl)
+    //public void DownloadFishImage(string imageUrl)
+    //{
+    //    HttpInfo info = new HttpInfo();
+    //    info.Set(
+    //        RequestType.TEXTURE,
+    //        imageUrl,
+    //        null,
+    //        false);
+    //    //info.imageId = imageId;
+    //    info.onReceiveImage = (DownloadHandler downloadHandler, int idx) => {
+
+    //        Texture2D texture = ((DownloadHandlerTexture)downloadHandler).texture;
+    //        villageImages[idx].sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+
+    //    };
+
+    //    HttpManager.Get().SendRequest(info);
+    //}
+
+    public void OnEnterButton()
     {
         HttpInfo info = new HttpInfo();
-        info.Set(
-            RequestType.TEXTURE,
-            imageUrl,
-            null,
-            false);
-        //info.imageId = imageId;
-        info.onReceiveImage = (DownloadHandler downloadHandler, int idx) => {
+        info.Set(RequestType.POST, "/ sign - up'", (DownloadHandler downloadHandler) =>
+        {
+            print("NetSignUp : " + downloadHandler.text);
 
-            Texture2D texture = ((DownloadHandlerTexture)downloadHandler).texture;
-            villageImages[idx].sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+            JsonList<NetVillageInfo> jsonList = JsonUtility.FromJson<JsonList<NetVillageInfo>>(downloadHandler.text);
 
-        };
+            //이미지 다운로드
+            for (int i = 0; i < jsonList.data.Count; i++)
+            {
+                DownloadVillageImage(jsonList.data[i].image, i);
+            }
 
-        HttpManager.Get().SendRequest(info);
+            firstStage.SetActive(false);
+            secondStage.SetActive(true);
+        });
+
     }
+
 
 
     public void OnChangeButton()
@@ -118,7 +120,7 @@ public class EndingManager : MonoBehaviour
         HttpManager.Get().SendRequest(info);
     }
 
-    public Image[] villageImages; 
+    public Image[] villageImages;
     public void DownloadVillageImage(string imageUrl, int imageId)
     {
         HttpInfo info = new HttpInfo();
@@ -128,7 +130,8 @@ public class EndingManager : MonoBehaviour
             null,
             false);
         info.imageId = imageId;
-        info.onReceiveImage = (DownloadHandler downloadHandler, int idx) => {
+        info.onReceiveImage = (DownloadHandler downloadHandler, int idx) =>
+        {
 
             Texture2D texture = ((DownloadHandlerTexture)downloadHandler).texture;
             villageImages[idx].sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
@@ -169,7 +172,8 @@ public class EndingManager : MonoBehaviour
             null,
             false);
         info.imageId = imageId;
-        info.onReceiveImage = (DownloadHandler downloadHandler, int idx) => {
+        info.onReceiveImage = (DownloadHandler downloadHandler, int idx) =>
+        {
 
             Texture2D texture = ((DownloadHandlerTexture)downloadHandler).texture;
             ActivityImages[idx].sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
