@@ -25,8 +25,12 @@ public class PlayerFishMode_LHS: MonoBehaviour
 
                 //다시 잡을 수 있는 상태로 만들기
                 GameManager_LHS.instance.isfishSave = false;
-                //물고기 잡았을때
-                GameManager_LHS.instance.isfishLook = true;
+                if(!GameManager_LHS.instance.isfishLook)
+                {
+                    //물고기 잡았을때
+                    GameManager_LHS.instance.isfishLook = true;
+                    StartCoroutine(FishingManager.instance.IECatchFish());
+                }
             }
 
             //내리기

@@ -20,9 +20,9 @@ public class FishMove_LHS : MonoBehaviour
         //잡고 나서
         if (GameManager_LHS.instance.isfishLook == true && objectGrab != null)
         {
-            Debug.Log("물고기 미끼위치로" + objectGrab.position);
+            //Debug.Log("물고기 미끼위치로" + objectGrab.position);
             transform.position = objectGrab.position;
-            StartCoroutine(FishingManager.instance.IECatchFish());
+            //StartCoroutine(FishingManager.instance.IECatchFish());
             //StartCoroutine(DestroyFish());
         }
     }

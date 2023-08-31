@@ -138,6 +138,7 @@ public class FishingManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         //물고기 제거
         Destroy(fish);
+        print("이미=======================지 생성");
         //@@점수로 환원 되는 모션
         StartCoroutine(IEScoreMotion());
         //점수 추가
@@ -156,13 +157,13 @@ public class FishingManager : MonoBehaviour
     IEnumerator IEScoreMotion()
     {
         //화면 정중앙에 물고기 이미지 생성
-        GameObject fishImage = Instantiate(fishImageF, JBSCanvas.transform);
+        //GameObject fishImage = Instantiate(fishImageF, JBSCanvas.transform);
         //@@이미지 위치에 파티클 
         //계속 회전 시키기
-        StartCoroutine(IEFishImageRotate(fishImage.transform));
+        //StartCoroutine(IEFishImageRotate(fishImage.transform));
         //점수 위치로 이동
         //이동하면 제거되고 점수 상승 효과
-        Destroy(fishImage);
+        //Destroy(fishImage);
 
         yield return null;
     }

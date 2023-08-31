@@ -38,7 +38,7 @@ public class BaitMove_LHS : MonoBehaviour
         if (isBaitMove && isFishPos)
         {
             transform.position = fishPos;
-            Debug.Log("물고기 잡았다");
+           // Debug.Log("물고기 잡았다");
 
 
 
@@ -49,14 +49,14 @@ public class BaitMove_LHS : MonoBehaviour
 
         else if (isBaitMove)
         {
-            Debug.Log("미끼 놓기");
+           // Debug.Log("미끼 놓기");
             rope.GetComponent<Rop_LHS>().SetsegmentLength(20);
             transform.position = Vector3.Lerp(transform.position, endPos.position, speed * Time.deltaTime);
         }
 
         else
         {
-            Debug.Log("미끼 다시 원상태");
+            //Debug.Log("미끼 다시 원상태");
             transform.position = Vector3.Lerp(transform.position, savePos, speed * Time.deltaTime);
         }
     }
