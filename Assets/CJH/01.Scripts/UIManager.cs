@@ -38,6 +38,24 @@ public class UIManager : MonoBehaviour
             //NetActivity();
         }
     }
+    public void NetName()
+    {
+        HttpInfo info = new HttpInfo();
+        info.Set(RequestType.GET, "/activity/name", (DownloadHandler downloadHandler) => {
+            print("NetName : " + downloadHandler.text);
+
+            JsonList<NetActivityInfo> jsonList = JsonUtility.FromJson<JsonList<NetActivityInfo>>(downloadHandler.text);
+
+            //jsonList.data[0].price
+
+
+        });
+
+
+        //info 의 정보로 요청을 보내자
+        HttpManager.Get().SendRequest(info);
+    }
+
 
     public void NetActivity()
     {
@@ -67,8 +85,8 @@ public class UIManager : MonoBehaviour
             print("NetFish : " + downloadHandler.text);
         });
 
-        SignUpInfo body = new SignUpInfo();
-        body.nickname = "현숙이";
+        NetFishInfo body = new NetFishInfo();
+        //body.nickname = "아카데미";
 
 
         info.body = JsonUtility.ToJson(body);

@@ -36,7 +36,7 @@ public class UIManager_LHS : MonoBehaviour
     {
         gameStartUI.SetActive(false);
         //게이지바 나오게
-        gameSliderUI.SetActive(true);
+        //gameSliderUI.SetActive(true);
     }
 
     //물고기 잡았을때 UI
@@ -48,7 +48,7 @@ public class UIManager_LHS : MonoBehaviour
         //FishInfoUI.SetActivea(true);
        // FishInfoUI.SetActive(true);
         anim = FishInfoUI.GetComponent<Animator>();
-        anim.SetBool("FishMove", true);
+        anim.SetTrigger("Fish");// ("FishMove", true);
     }
 
     public void FishEndUI()

@@ -138,10 +138,12 @@ public class PlayerMove : MonoBehaviour
         FishingManager.instance.StartFishing();
     }
 
+    [SerializeField] Transform endingPos;
+
     //낚시 모드 종료
     public void EndFishing()
     {
-        ChangeState(PlayerStat.PlayerMode.RESULT);
+        ChangeState(PlayerStat.PlayerMode.MOVE);
         //모든 물고기 제거
         GameObject[] fishes = GameObject.FindGameObjectsWithTag("Fish");
         foreach(GameObject fish in fishes)
@@ -149,7 +151,7 @@ public class PlayerMove : MonoBehaviour
             Destroy(fish);
         }
         //원래 위치로 이동
-        transform.SetLocalPositionAndRotation(originPos, originRot);
+        transform.SetLocalPositionAndRotation(endingPos.position, endingPos.rotation);
         mCam.rotation = mCamOriginRot;
         
         EndingManager.instance.ResultUI();

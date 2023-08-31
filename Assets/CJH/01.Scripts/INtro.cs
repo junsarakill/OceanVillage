@@ -18,7 +18,7 @@ public class INtro : MonoBehaviour
             print("NetSignUp : " + downloadHandler.text);
             ProjectManager.instance.myInfo = JsonUtility.FromJson<ReceiveUserInfo>(downloadHandler.text);
 
-            SceneManager.LoadScene("GameScene0901");
+            SceneManager.LoadScene("GameSceneFInal");
 
         });
 
