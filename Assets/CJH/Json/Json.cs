@@ -46,7 +46,7 @@ public class Json : MonoBehaviour
         //지역은 다 정해져있음
         //가격 또한 정해져있음
         
-
+        
 
         fishInfo = new FishInfo();
 

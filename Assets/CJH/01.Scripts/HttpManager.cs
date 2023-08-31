@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,14 +14,110 @@ public class JsonList<T>
     public List<T> data;
 }
 
+//{
+//    "status": 201,
+//  "message": "생선 잡은 유저",
+//  "data": {
+//        "userDTO": {
+//            "nickname": "abc123",
+//      "money": 20000
+//        },
+//    "fishDTO": {
+//            "name": "갈치",
+//      "price": 20000
+//    }
+//    }
+//}
+//[Serializable]
+//public struct UserInfo
+//{
+//    public int status;
+//    public string message;
+//    public data data;
+//}
+//[Serializable]
+//public struct data
+//{
+//    public userDTO user;
+//    public fishDTO fish;
+//    public int price;
+
+//}
+//[Serializable]
+//public struct userDTO
+//{
+//    public string nickname;
+//    public int money;
+//}
+//[Serializable]
+//public struct fishDTO
+//{
+//    public string name;
+//    public int price;
+//}
+
+
 
 [Serializable]
 public struct SignUpInfo
-{
-    public string userId;
-    public string password;
+{   
     public string nickname;
 }
+
+[Serializable]
+public struct NetFishInfo
+{
+    public int status;
+    public string message;
+    public data data;
+}
+
+[Serializable]
+public struct data
+{
+    public userDTO user;
+    public fishDTO fish;
+    public int price;
+}
+
+[Serializable]
+public struct userDTO
+{
+    public string nickname;
+    public int money;
+}
+[Serializable]
+public struct fishDTO
+{
+    public string name;
+    public int price;
+}
+
+
+[Serializable]
+public struct NetActivityInfo
+{
+    public int id;
+    public string image;
+    public string village;
+    public string villageEn;
+    public string name;
+    public string price;
+    public string period;
+    public string people;
+
+}
+
+[Serializable]
+public struct NetVillageInfo
+{
+    public int id;
+    public string name;
+    public string image;
+    public string address;
+    public string fishNameEn;
+}
+
 
 [Serializable]
 public struct UserInfo
@@ -60,6 +157,10 @@ public class HttpInfo
 
     public string body= "{}";
     public Action<DownloadHandler> onReceive;
+    public Action<DownloadHandler, int> onReceiveImage;
+
+
+    public int imageId;
 
     public void Set(
         RequestType type, 
@@ -162,10 +263,22 @@ public class HttpManager : MonoBehaviour
         {
             //print("네트워크 응답 : " + req.downloadHandler.text);
 
-            if(httpInfo.onReceive != null)
+
+            if(httpInfo.requestType == RequestType.TEXTURE)
             {
-                httpInfo.onReceive(req.downloadHandler);
+                if(httpInfo.onReceiveImage != null)
+                {
+                    httpInfo.onReceiveImage(req.downloadHandler, httpInfo.imageId);
+                }
             }
+            else
+            {
+                if(httpInfo.onReceive != null)
+                {
+                    httpInfo.onReceive(req.downloadHandler);
+                }
+            }
+
         }
         //통신 실패
         else

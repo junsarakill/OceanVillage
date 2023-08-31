@@ -10186,7 +10186,7 @@ GameObject:
   - component: {fileID: 690146174}
   - component: {fileID: 690146173}
   m_Layer: 5
-  m_Name: VillageImage (1)
+  m_Name: AdventureImage (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15409,7 +15409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &963094515
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24243,7 +24243,7 @@ GameObject:
   - component: {fileID: 1532446297}
   - component: {fileID: 1532446296}
   m_Layer: 5
-  m_Name: VillageImage
+  m_Name: AdventureImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27012,7 +27012,7 @@ GameObject:
   - component: {fileID: 1701027553}
   - component: {fileID: 1701027552}
   m_Layer: 5
-  m_Name: VillageImage (2)
+  m_Name: AdventureImage (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37469,6 +37469,14 @@ MonoBehaviour:
   adventureButton: {fileID: 891018263}
   exitButton: {fileID: 291421897}
   panel: {fileID: 423979503}
+  villageImages:
+  - {fileID: 1144525646}
+  - {fileID: 1446600224}
+  - {fileID: 657348697}
+  ActivityImages:
+  - {fileID: 1532446296}
+  - {fileID: 690146173}
+  - {fileID: 1701027552}
 --- !u!4 &2768901015777491102
 Transform:
   m_ObjectHideFlags: 0
