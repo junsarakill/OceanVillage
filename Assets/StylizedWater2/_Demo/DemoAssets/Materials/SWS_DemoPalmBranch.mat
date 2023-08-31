@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SWS_DemoPalmBranch
-  m_Shader: {fileID: -6465566751694194690, guid: e2335271dc0537147af5dbcb5f4ece06,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: e2335271dc0537147af5dbcb5f4ece06, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _NORMALMAP
@@ -140,7 +139,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0.999}
+    - _BaseColor: {r: 0.11620412, g: 0.3962264, b: 0.054823738, a: 0.999}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 0.999}
