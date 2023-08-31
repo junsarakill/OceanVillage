@@ -170,7 +170,7 @@ public class HttpManager : MonoBehaviour
         //통신 실패
         else
         {
-            print("네트워크 에레 : " + req.error);
+            print("네트워크 에러 : " + req.error);
         }
 
         req.Dispose();
