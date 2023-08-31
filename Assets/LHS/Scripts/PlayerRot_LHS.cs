@@ -12,14 +12,14 @@ public class PlayerRot_LHS : MonoBehaviour
     //Á¦ÇÑ°ª
     public float rotClamp = 80;
 
-    Transform trCam;
+    //Transform trCam;
 
     float mx;
     float my;
 
     void Start()
     {
-        trCam = Camera.main.transform;
+        //trCam = Camera.main.transform;
     }
 
     void Update()
@@ -34,6 +34,6 @@ public class PlayerRot_LHS : MonoBehaviour
 
         rotY = Mathf.Clamp(rotY, -rotClamp, rotClamp);
 
-        trCam.localEulerAngles = new Vector3(-rotY, 0, 0);
+        //trCam.localEulerAngles = new Vector3(-rotY, 0, 0);
     }
 }
