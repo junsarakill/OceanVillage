@@ -47,6 +47,9 @@ public class PlayerFishMode_LHS: MonoBehaviour
 
                 //GameManager_LHS.instance.isfishSave = false;
                 GameManager_LHS.instance.isfishLook = false;
+
+                //@@ JBS 추가 퐁당 사운드 재생
+                AudioManager.instance.PlaySound(AudioManager.Sounds.FISHING_START);
             }
         }
     }
