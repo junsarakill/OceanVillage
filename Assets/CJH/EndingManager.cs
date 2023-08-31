@@ -23,6 +23,9 @@ public class EndingManager : MonoBehaviour
     //UI 종료 버튼
     public Button exitButton;
 
+    //패널
+    public GameObject panel;
+
 
 
     // Start is called before the first frame update
@@ -32,6 +35,7 @@ public class EndingManager : MonoBehaviour
         firstStage.SetActive(false);
         secondStage.SetActive(false);
         thirdStage.SetActive(false);
+        panel.SetActive(false);
 
     }
 
@@ -43,7 +47,10 @@ public class EndingManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             print("1111");
+            
             firstStage.SetActive(true);
+            //패널도 켜진다.
+            panel.SetActive(true );
         }
     }
     public void OnChangeButton()
@@ -59,6 +66,8 @@ public class EndingManager : MonoBehaviour
     public void OnExitButton()
     {
         thirdStage.SetActive(false);
+        //패널이 꺼진다.
+        panel.SetActive(false);
         //맵으로 가서 마을로 이동한다.
     }
 
