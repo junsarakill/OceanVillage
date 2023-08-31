@@ -132,8 +132,6 @@ public struct UserInfo
 [Serializable]
 public struct ReceiveUserInfo
 {
-    public int status;
-    public string message;
     public UserInfo data;
 }
 
@@ -169,7 +167,7 @@ public class HttpInfo
         bool useDefaultUrl = true)
     {
         requestType = type;
-        if (useDefaultUrl) url = "http://192.168.17.59:8888";
+        if (useDefaultUrl) url = "http://192.168.242.59:8888";
         url += u;
         onReceive = callback;
     }

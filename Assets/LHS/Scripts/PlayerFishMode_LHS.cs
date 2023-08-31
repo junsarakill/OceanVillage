@@ -1,6 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+
+
+
+[System.Serializable]
+public class FishGetInfoUser
+{
+    public string nickname;
+    public int money;
+}
+
+[System.Serializable]
+public class FishGetInfoFish
+{
+    public string name;
+    public int price;
+}
+
+[System.Serializable]
+public class FishGetInfo
+{
+    public FishGetInfoUser userDTO;
+    public FishGetInfoFish fishDTO;
+}
+
+[System.Serializable]
+public class NetFishGetInfo
+{
+    public FishGetInfo data;
+}
+
 
 public class PlayerFishMode_LHS: MonoBehaviour
 {
@@ -21,16 +52,10 @@ public class PlayerFishMode_LHS: MonoBehaviour
                 gameObject.GetComponentInChildren<BaitMove_LHS>().isBaitMove = false;
                 gameObject.GetComponentInChildren<BaitMove_LHS>().isFishPos = false;
 
-                UIManager_LHS.instance.FishGrabUI();
 
-                //다시 잡을 수 있는 상태로 만들기
-                GameManager_LHS.instance.isfishSave = false;
-                if(!GameManager_LHS.instance.isfishLook)
-                {
-                    //물고기 잡았을때
-                    GameManager_LHS.instance.isfishLook = true;
-                    StartCoroutine(FishingManager.instance.IECatchFish());
-                }
+                NetFish();
+
+                
             }
 
             //내리기
@@ -49,5 +74,54 @@ public class PlayerFishMode_LHS: MonoBehaviour
                 GameManager_LHS.instance.isfishLook = false;
             }
         }
+    }
+
+    public void NetFish()
+    {
+        HttpInfo info = new HttpInfo();
+        info.Set(RequestType.POST, "/fish", (DownloadHandler downloadHandler) => {
+            print("NetFish : " + downloadHandler.text);
+            /*
+             {
+  "status": 201,
+  "message": "생선 잡은 유저",
+  "data": {
+    "userDTO": {
+      "nickname": "abc123",
+      "money": 20000
+    },
+    "fishDTO": {
+      "name": "갈치",
+      "price": 20000
+    }
+  }
+}
+             */
+
+            NetFishGetInfo info = JsonUtility.FromJson<NetFishGetInfo>(downloadHandler.text);
+
+            UIManager_LHS.instance.FishGrabUI(info.data.fishDTO.name);
+
+            //다시 잡을 수 있는 상태로 만들기
+            GameManager_LHS.instance.isfishSave = false;
+            if (!GameManager_LHS.instance.isfishLook)
+            {
+                //물고기 잡았을때
+                GameManager_LHS.instance.isfishLook = true;
+                StartCoroutine(FishingManager.instance.IECatchFish());
+            }
+
+        });
+
+        SignUpInfo body = new SignUpInfo();
+        body.nickname = ProjectManager.instance.myInfo.data.nickname;
+
+
+        info.body = JsonUtility.ToJson(body);
+
+        //info.Set(RequestType.GET, "/todos", OnReceiveGet);
+
+        //info 의 정보로 요청을 보내자
+        HttpManager.Get().SendRequest(info);
     }
 }
