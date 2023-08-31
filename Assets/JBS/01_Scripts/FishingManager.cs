@@ -35,6 +35,9 @@ public class FishingManager : MonoBehaviour
             scoreUIText.text = $"{value}";
         }
     }
+
+    //획득 파티클 프리팹
+    [SerializeField] GameObject fishGetPSF;
     
     private void Awake() {
         if(instance == null)
@@ -126,14 +129,17 @@ public class FishingManager : MonoBehaviour
     //물고기 잡은 뒤 처리
     public IEnumerator IECatchFish()
     {
+        //물고기 객체
+        GameObject fish = GameObject.FindWithTag("Fish");
+        //획득 파티클 효과 재생
+        GameObject fishGetPS = Instantiate(fishGetPSF, fish.transform);
         isSpawned = false;
-        Destroy(GameObject.FindWithTag("Fish"));
-        //임시 팝업 이미지 활성화
-        tempIcon.SetActive(true);
         //3초 : 팝업 효과 끝나면 자동 종료
         yield return new WaitForSeconds(3);
+        //물고기 제거
+        Destroy(GameObject.FindWithTag("Fish"));
         //@@점수로 환원 되는 모션
-        tempIcon.SetActive(false);
+        //점수 추가
         FishingManager.instance.AddScore(250);
         yield return null;
         //물고기 생성 요청

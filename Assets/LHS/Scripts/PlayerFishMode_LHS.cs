@@ -13,7 +13,8 @@ public class PlayerFishMode_LHS: MonoBehaviour
 
     void Start()
     {
-        UIManager_LHS.instance.GameStartBeforeUI();
+        //@@ JBS 임시 주석 처리
+        //UIManager_LHS.instance.GameStartBeforeUI();
     }
 
     void Update()
