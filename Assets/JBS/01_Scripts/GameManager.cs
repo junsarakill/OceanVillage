@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
 
     private void Start() {
         //커서 비활성화
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
 

@@ -48,6 +48,9 @@ public class PlayerMove : MonoBehaviour
     Vector3 originPos;
     Quaternion originRot;
     Quaternion mCamOriginRot;
+
+    //낚시대 객체
+    [SerializeField]GameObject fishingRod;
     
     //낚시 위치
     [SerializeField]Transform fishingPoint;
@@ -65,6 +68,9 @@ public class PlayerMove : MonoBehaviour
 
         //초기 위치 스폰 포인트로 이동
         transform.SetLocalPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
+
+        //낚시대 비활성화
+        fishingRod.SetActive(false);
 
         //값 초기화
         originPos = new Vector3(0,0,0);
@@ -129,6 +135,7 @@ public class PlayerMove : MonoBehaviour
         //낚시 위치로 이동
         transform.SetLocalPositionAndRotation(fishingPoint.position, fishingPoint.rotation);
         mCam.localRotation = Quaternion.Euler(14.453f,0,0);
+
         FishingManager.instance.StartFishing();
     }
 
@@ -148,6 +155,15 @@ public class PlayerMove : MonoBehaviour
     {
         //상태 변경
         pStat.playerMode = pMode;
+
+        if(pStat.playerMode == PlayerStat.PlayerMode.MOVE)
+        {
+            fishingRod.SetActive(false);
+        }
+        else if(pStat.playerMode == PlayerStat.PlayerMode.FISHING)
+        {
+            fishingRod.SetActive(true);
+        }
     }
 
     private void UpdateMove()
