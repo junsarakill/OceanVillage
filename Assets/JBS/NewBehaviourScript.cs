@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    //이동은 cc 쓰는 기본 이동
-    //회전은 metaphoton 참고
+    //이동은 cc 쓰는 기본 이동c
+    //회전은 metaphoton 참고c
     //시간제한은 코루틴 time-=time.del;
     //시작 인트로는 시네머신 사용
     //거리가 2 이내면 낚시 미니게임을 실행할 수 있는 의자 오브젝트와 상호작용 가능
