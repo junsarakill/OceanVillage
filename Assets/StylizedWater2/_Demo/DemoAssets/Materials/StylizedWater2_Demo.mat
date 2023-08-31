@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: StylizedWater2_Demo
-  m_Shader: {fileID: -6465566751694194690, guid: d7b0192b9bf19c949900035fa781fdc4,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d7b0192b9bf19c949900035fa781fdc4, type: 3}
   m_ValidKeywords:
   - _ADVANCED_SHADING
   - _CAUSTICS
@@ -262,9 +261,9 @@ Material:
     - _VertexColorWaveFlattening: 0
     - _WaveCount: 2
     - _WaveDistance: 0.775
-    - _WaveHeight: 0.15
-    - _WaveNormalStr: 0.16
-    - _WaveSpeed: 2.3999996
+    - _WaveHeight: 0
+    - _WaveNormalStr: 0
+    - _WaveSpeed: 2.4999995
     - _WaveSteepness: 5
     - _WaveTint: 0
     - _WavesOn: 1
