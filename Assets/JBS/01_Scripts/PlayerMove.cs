@@ -48,6 +48,9 @@ public class PlayerMove : MonoBehaviour
     Vector3 originPos;
     Quaternion originRot;
     Quaternion mCamOriginRot;
+    
+    //낚시 위치
+    [SerializeField]Transform fishingPoint;
 
     private void Awake() {
         if(instance == null)
@@ -124,7 +127,7 @@ public class PlayerMove : MonoBehaviour
         originRot = transform.rotation;
         mCamOriginRot = mCam.rotation;
         //낚시 위치로 이동
-        transform.SetLocalPositionAndRotation(chair.position, Quaternion.Euler(0,157.095f,0));
+        transform.SetLocalPositionAndRotation(fishingPoint.position, fishingPoint.rotation);
         mCam.localRotation = Quaternion.Euler(14.453f,0,0);
         FishingManager.instance.StartFishing();
     }
@@ -183,8 +186,8 @@ public class PlayerMove : MonoBehaviour
         {
             //@@ 낚시 위치에 따라 변경해야함
             //rx,ry 각도 제한
-            rx = Mathf.Clamp(rx, -225, -175);
-            ry = Mathf.Clamp(ry,-30,0);
+            rx = Mathf.Clamp(rx, -101, -4.5f);
+            ry = Mathf.Clamp(ry,-53,5);
         }
         //카메라 회전
         mCam.eulerAngles = new Vector3(-ry,rx,0);
