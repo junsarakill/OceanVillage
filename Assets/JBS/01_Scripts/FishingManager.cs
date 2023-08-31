@@ -135,15 +135,46 @@ public class FishingManager : MonoBehaviour
         GameObject fishGetPS = Instantiate(fishGetPSF, fish.transform);
         isSpawned = false;
         //3초 : 팝업 효과 끝나면 자동 종료
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         //물고기 제거
-        Destroy(GameObject.FindWithTag("Fish"));
+        Destroy(fish);
         //@@점수로 환원 되는 모션
+        StartCoroutine(IEScoreMotion());
         //점수 추가
         FishingManager.instance.AddScore(250);
         yield return null;
         //물고기 생성 요청
         SpawnFish();
+    }
+
+    //물고기 이미지 프리팹
+    [SerializeField]GameObject fishImageF;
+    //캔바스
+    [SerializeField]GameObject JBSCanvas;
+
+    //점수 환원 모션
+    IEnumerator IEScoreMotion()
+    {
+        //화면 정중앙에 물고기 이미지 생성
+        GameObject fishImage = Instantiate(fishImageF, JBSCanvas.transform);
+        //@@이미지 위치에 파티클 
+        //계속 회전 시키기
+        StartCoroutine(IEFishImageRotate(fishImage.transform));
+        //점수 위치로 이동
+        //이동하면 제거되고 점수 상승 효과
+        Destroy(fishImage);
+
+        yield return null;
+    }
+
+    //생선 이미지 회전 시키기
+    IEnumerator IEFishImageRotate(Transform fishTr)
+    {
+        while(fishTr.gameObject != null)
+        {
+            fishTr.Rotate(0,0,-2*8);
+            yield return null;
+        }
     }
 
     //점수 증가
