@@ -41,7 +41,7 @@ public class Rop_LHS : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+/*        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             segmentLength = 5;
         }
@@ -49,7 +49,7 @@ public class Rop_LHS : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             segmentLength = 20;
-        }
+        }*/
 
         //드로우 그리기
         this.DrawRope();
@@ -60,6 +60,10 @@ public class Rop_LHS : MonoBehaviour
         this.Simulate();
     }
 
+    public void SetsegmentLength(int num)
+    {
+        segmentLength = num;
+    }
 
     //1.처음 위치는 항상 마우스 포인트에서
     //2.각 점마다 일정한 거리 유지

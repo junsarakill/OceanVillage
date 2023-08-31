@@ -13,7 +13,7 @@ public class PlayerFishMode_LHS: MonoBehaviour
 
     void Start()
     {
-        
+        UIManager_LHS.instance.GameStartBeforeUI();
     }
 
     void Update()
@@ -21,13 +21,32 @@ public class PlayerFishMode_LHS: MonoBehaviour
         //스파이스바를 누르면 낚시대 애니메이션 작용
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            //X축 회전 (자식 객체의 컴포넌트 가져오기) - Test용
-            gameObject.GetComponentInChildren<FishRodRot_LHS>().RodAction(1);
-            gameObject.GetComponentInChildren<BaitMove_LHS>().BaitAction(1);
 
-            //미끼가 특정 위치로 떨어짐
+            if(GameManager_LHS.instance.isfishSave == true)
+            {
+                gameObject.GetComponentInChildren<FishRodRot_LHS>().isRodRot = true;
+                gameObject.GetComponentInChildren<BaitMove_LHS>().isBaitMove = false;
+                UIManager_LHS.instance.FishGrabUI();
 
-            //최초 위치에서 해당 위치로 이동 y축 이동
+                //다시 잡을 수 있는 상태로 만들기
+                GameManager_LHS.instance.isfishSave = false;
+                GameManager_LHS.instance.isfishLook = true;
+            }
+
+            else
+            {
+                //X축 회전 (자식 객체의 컴포넌트 가져오기) - Test용
+                gameObject.GetComponentInChildren<FishRodRot_LHS>().isRodRot = false;
+                gameObject.GetComponentInChildren<BaitMove_LHS>().isBaitMove = true;
+
+                //게임 UI끄기
+                UIManager_LHS.instance.GameStartUI();
+                //미끼가 특정 위치로 떨어짐
+
+                //최초 위치에서 해당 위치로 이동 y축 이동
+
+                //물고기를 잡은 상태라면 다시 올라올 수 있게 만들기
+            }
         }
 
         //움직임을 멈추고
