@@ -78,6 +78,8 @@ public class BaitMove_LHS : MonoBehaviour
             //내 위치를 물고기 위치로 놓는다.
             isFishPos = true;
             fishPos = other.transform.position;
+
+            other.GetComponent<FishMove_LHS>().Grab(this.transform);
         }
     }
 }

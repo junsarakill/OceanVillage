@@ -34078,7 +34078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5894bec09f71d3b4698b55219cbcd2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  segmentLength: 20
+  segmentLength: 30
   startPos: {fileID: 1417737817868981262}
   endPos: {fileID: 889384462}
 --- !u!4 &1417737817868981262
