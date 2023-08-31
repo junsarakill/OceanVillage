@@ -23,14 +23,4 @@ public class GameManager_LHS : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }

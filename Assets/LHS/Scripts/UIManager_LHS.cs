@@ -10,6 +10,8 @@ public class UIManager_LHS : MonoBehaviour
     [SerializeField] GameObject gameSliderUI;
     [SerializeField] GameObject FishInfoUI;
 
+    Animator anim;
+
     private void Awake()
     {
         if(instance == null)
@@ -22,7 +24,7 @@ public class UIManager_LHS : MonoBehaviour
         }
     }
 
-    //게임 시작 전
+    //게임 시작 전 
     public void GameStartBeforeUI()
     {
         gameStartUI.SetActive(true);
@@ -32,14 +34,18 @@ public class UIManager_LHS : MonoBehaviour
     public void GameStartUI()
     {
         gameStartUI.SetActive(false);
-        gameSliderUI.SetActive(true);
         //게이지바 나오게
+        gameSliderUI.SetActive(true);
     }
 
     //물고기 잡았을때 UI
     public void FishGrabUI()
     {
-        FishInfoUI.SetActive(true);
+        //애니메이션으로 나왔다 들어가기
+        //FishInfoUI.SetActivea(true);
+       // FishInfoUI.SetActive(true);
+        anim = FishInfoUI.GetComponent<Animator>();
+        anim.SetBool("FishMove", true);
     }
 
     public void FishEndUI()
