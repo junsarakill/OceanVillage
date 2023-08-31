@@ -145,8 +145,12 @@ public class PlayerMove : MonoBehaviour
     public void EndFishing()
     {
         ChangeState(PlayerStat.PlayerMode.MOVE);
-        //물고기 제거
-        Destroy(GameObject.FindWithTag("Fish"));
+        //모든 물고기 제거
+        GameObject[] fishes = GameObject.FindGameObjectsWithTag("Fish");
+        foreach(GameObject fish in fishes)
+        {
+            Destroy(fish);
+        }
         //원래 위치로 이동
         transform.SetLocalPositionAndRotation(originPos, originRot);
         mCam.rotation = mCamOriginRot;

@@ -35,6 +35,9 @@ public class FishingManager : MonoBehaviour
             scoreUIText.text = $"{value}";
         }
     }
+
+    //획득 파티클 프리팹
+    [SerializeField] GameObject fishGetPSF;
     
     private void Awake() {
         if(instance == null)
@@ -126,25 +129,52 @@ public class FishingManager : MonoBehaviour
     //물고기 잡은 뒤 처리
     public IEnumerator IECatchFish()
     {
-        print("잡기 실행됨");
+        //물고기 객체
+        GameObject fish = GameObject.FindWithTag("Fish");
+        //획득 파티클 효과 재생
+        GameObject fishGetPS = Instantiate(fishGetPSF, fish.transform);
         isSpawned = false;
-        Destroy(GameObject.FindWithTag("Fish"));
-        //임시 팝업 이미지 활성화
-        tempIcon.SetActive(true);
+        //3초 : 팝업 효과 끝나면 자동 종료
+        yield return new WaitForSeconds(2);
+        //물고기 제거
+        Destroy(fish);
+        //@@점수로 환원 되는 모션
+        StartCoroutine(IEScoreMotion());
+        //점수 추가
+        FishingManager.instance.AddScore(250);
+        yield return null;
         //물고기 생성 요청
         SpawnFish();
-        //상호작용 키 대기
-        while(!Input.GetButtonDown("Interact"))
+    }
+
+    //물고기 이미지 프리팹
+    [SerializeField]GameObject fishImageF;
+    //캔바스
+    [SerializeField]GameObject JBSCanvas;
+
+    //점수 환원 모션
+    IEnumerator IEScoreMotion()
+    {
+        //화면 정중앙에 물고기 이미지 생성
+        GameObject fishImage = Instantiate(fishImageF, JBSCanvas.transform);
+        //@@이미지 위치에 파티클 
+        //계속 회전 시키기
+        StartCoroutine(IEFishImageRotate(fishImage.transform));
+        //점수 위치로 이동
+        //이동하면 제거되고 점수 상승 효과
+        Destroy(fishImage);
+
+        yield return null;
+    }
+
+    //생선 이미지 회전 시키기
+    IEnumerator IEFishImageRotate(Transform fishTr)
+    {
+        while(fishTr.gameObject != null)
         {
+            fishTr.Rotate(0,0,-2*8);
             yield return null;
-            //print("대기중");
         }
-        //print("======대기끝========");
-        //@@점수로 환원 되는 모션
-        tempIcon.SetActive(false);
-        FishingManager.instance.AddScore(250);
-        //FishingManager.instance.SpawnFish();
-        //yield return null;
     }
 
     //점수 증가
