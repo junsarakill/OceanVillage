@@ -130,20 +130,14 @@ public class FishingManager : MonoBehaviour
         Destroy(GameObject.FindWithTag("Fish"));
         //임시 팝업 이미지 활성화
         tempIcon.SetActive(true);
-        //물고기 생성 요청
-        SpawnFish();
-        //상호작용 키 대기
-        while(!Input.GetButtonDown("Interact"))
-        {
-            yield return null;
-            //print("대기중");
-        }
-        //print("======대기끝========");
+        //3초 : 팝업 효과 끝나면 자동 종료
+        yield return new WaitForSeconds(3);
         //@@점수로 환원 되는 모션
         tempIcon.SetActive(false);
         FishingManager.instance.AddScore(250);
-        //FishingManager.instance.SpawnFish();
-        //yield return null;
+        yield return null;
+        //물고기 생성 요청
+        SpawnFish();
     }
 
     //점수 증가
