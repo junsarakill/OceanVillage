@@ -56,4 +56,4 @@
 <br>
 
 # 영상(Youtube)
-### [Home]([https://github.com/MTVS-CodeMagician/MTVS-reserve/wiki](https://youtu.be/tqTyzM-zQaQ)https://youtu.be/tqTyzM-zQaQ)
+### [![Video Label](http://img.youtube.com/vi/59USvjy2toI/0.jpg)](https://youtu.be/tqTyzM-zQaQ)
