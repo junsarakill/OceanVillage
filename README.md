@@ -56,4 +56,6 @@
 <br>
 
 # 영상(Youtube)
-### [![Video Label](https://github.com/junsarakill/OceanVillage/issues/3#issue-1881529788)](https://youtu.be/tqTyzM-zQaQ)
+
+
+### [![OceanVilliage](https://github.com/junsarakill/OceanVillage/assets/97331501/ae29268e-deff-4f7d-8b93-af6f6a156995)](https://youtu.be/tqTyzM-zQaQ)
