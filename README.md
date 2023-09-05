@@ -59,4 +59,4 @@
 # 영상(Youtube)
 
 
-### [![OceanVilliage](https://github.com/junsarakill/OceanVillage/assets/97331501/ae29268e-deff-4f7d-8b93-af6f6a156995)](https://youtu.be/tqTyzM-zQaQ)
+### [![OceanVilliage](https://github.com/junsarakill/OceanVillage/assets/97331501/84a11bc9-53d0-429f-9493-05ba5d5ac9a2)](https://youtu.be/tqTyzM-zQaQ)
