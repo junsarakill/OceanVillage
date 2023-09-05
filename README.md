@@ -46,7 +46,7 @@
 | 이름                                                           | 포지션    | 담당 기능 구현                          |
 |----------------------------------------------------------------|-----------| ----------------------------------------|
 | <a href="https://github.com/JCURVEs" target='_blank'>조재희</a> | `XR-Unity`| `발표` `어촌마을 홍보 UI 기능` `포톤서버연동`| 
-| <a href="https://github.com/hyunsu98" target='_blank'>이현숙</a> | `XR-Unity`| `낚시모드` `플레이어 상호작용 구현` `회원가입, 로그인 기능`영상 편집`| 
+| <a href="https://github.com/hyunsu98" target='_blank'>이현숙</a> | `XR-Unity`| `낚시모드` `플레이어 상호작용 구현` `회원가입, 로그인 기능` `영상 편집`| 
 | <a href="https://github.com/junsarakill" target='_blank'>전범서</a> | `XR-Unity`| `플레이어 구현` `오브젝트 연동` `VFX/SFX` `영상 편집`| 
 | <a href="https://github.com/gorgerous92" target='_blank'>노지현</a> | `3D모델`| `아트 요소 분석` `오브젝트 배치` `UI 디자인`| 
 
