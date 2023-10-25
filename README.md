@@ -57,15 +57,8 @@
 
 
 ## ⭐️ 상장
+![상장](https://github.com/junsarakill/OceanVillage/assets/97331501/af8825da-86eb-49dc-b4d2-de1586f3a360)
 
-- Language  : C# / Unity (2021.3.26f1)
-- DB : MySQL
-- Server : Apache Tomcat
-- Front : HTML5, CSS3, JavaScript, jQuery, Bootstrap
-- Framework : Spring boot(2.7.12)
-- Build Tool : Maven
-- IDE : Intellij
-- 형상 관리 : Github
 
 <br>
 
