@@ -10,7 +10,7 @@
 실제 어촌마을이 운영하는 서비스를 홍보하고 이용할 수 있습니다.
 
 <br/>
-### ⭐️ Feat: 주요 기능 소개
+⭐️주요 기능 소개
 
 #### 1) 낚시 게임 모드
 바다에서 낚시를 하는 게임모드를 진행할 수 있습니다.
@@ -52,9 +52,26 @@
 | <a href="https://github.com/gorgerous92" target='_blank'>노지현</a> | `3D모델`| `아트 요소 분석` `오브젝트 배치` `UI 디자인`| 
 
 
+<br>
+<br/>
 
+
+## ⭐️ 상장
+
+- Language  : C# / Unity (2021.3.26f1)
+- DB : MySQL
+- Server : Apache Tomcat
+- Front : HTML5, CSS3, JavaScript, jQuery, Bootstrap
+- Framework : Spring boot(2.7.12)
+- Build Tool : Maven
+- IDE : Intellij
+- 형상 관리 : Github
 
 <br>
+
+
+<br/>
+
 
 # 영상(Youtube)
 
