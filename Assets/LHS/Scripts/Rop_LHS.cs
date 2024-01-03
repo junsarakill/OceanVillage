@@ -2,32 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//각 세그먼트의 현재 및 이전 위치를 저장하는 구조체
+//현재 위치와 이전 위치가 순서대로 포함될 예정
+public struct RopeSegment
+{
+    //Vector3로 가지 않아도 되나? 점이기 때문에
+    public Vector3 posNow;
+    public Vector3 posOld;
+
+    public RopeSegment(Vector3 pos)
+    {
+        this.posNow = pos;
+        this.posOld = pos;
+    }
+}
+
 public class Rop_LHS : MonoBehaviour
 {
-    //라인렌더러로 그리기
+    //로프를 그리기 위한 LineRenderer
     private LineRenderer lineRenderer;
-    //포인트 로프 세그먼트 
+    //로프 세그먼트를 저장하는 리스트 (포인트가 되는 지점들)
     private List<RopeSegment> ropeSegments = new List<RopeSegment>();
-    //포인트들의 거리
+    //로프 포인트 간의 거리
     private float ropeSegLen = 0.25f;
-    //라인렌더러 길이
+    //로프 세그먼트 수 (라인렌더러의 길이가 될 것임)
     public int segmentLength = 20;
-    //라인 렌더러의 너비
+    //LineRenderer의 너비
     private float lineWidth = 0.01f;
 
+    //로프 시작 위치
     [SerializeField] private Transform startPos;
-    //물고기 잡는 위치로 바꿔야 함
+    //로프 끝 위치 (물고기 잡는 위치)
     [SerializeField] private Transform endPos;
 
     void Start()
     {
         this.lineRenderer = this.GetComponent<LineRenderer>();
-        //두점 사이의 거리를 일정하게 유지
-        //마우스 포인트로 되어있는데 ※ 시작 위치는 정해 놓을 예정
 
-        //Vector3 ropeStartPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //두점 사이의 거리를 일정하게 (시작 위치는 정해 놓을 것 - 낚싯대)
         Vector3 ropeStartPoint = startPos.position;
 
+        //초기 로프 세그먼트 생성
         //스크린을 월드포인트로 호출하는 api 사용하여 로프 그리기위해
         //35개의 포인트 생성 -> 세그먼트 수를 반복하고 계속해서 포인트를 연결
         for (int i = 0; i < segmentLength; i++)
@@ -41,27 +56,20 @@ public class Rop_LHS : MonoBehaviour
 
     void Update()
     {
-/*        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            segmentLength = 5;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            segmentLength = 20;
-        }*/
-
-        //드로우 그리기
+        //로프 그리기
         this.DrawRope();
     }
 
     private void FixedUpdate()
     {
+        //로프 물리 시뮬레이션
         this.Simulate();
     }
 
+    // 잡았을때 줄이 팽팽해지는 효과
     public void SetsegmentLength(int num)
     {
+        //세그먼트 수 외부에서 설정 가능
         segmentLength = num;
     }
 
@@ -69,9 +77,9 @@ public class Rop_LHS : MonoBehaviour
     //2.각 점마다 일정한 거리 유지
     private void Simulate()
     {
+        //▶로프 물리 시뮬레이션, 중력 및 제약 조건 포함
         //SIMULATION
         //중력
-        //◀
         Vector3 forceGravity = new Vector3(0f, -1.5f);
 
         //1 부터 틀림
@@ -80,7 +88,6 @@ public class Rop_LHS : MonoBehaviour
             //※내가 원하는 값으로 만들면 된다.
             RopeSegment firstSegment = this.ropeSegments[i];
             //로프의 현재 위치에서 로프의 이전 위치를 빼서
-            //◀
             Vector3 velocity = firstSegment.posNow - firstSegment.posOld;
             firstSegment.posOld = firstSegment.posNow;
             //새로운 속도를 얻은 후
@@ -91,6 +98,7 @@ public class Rop_LHS : MonoBehaviour
             this.ropeSegments[i] = firstSegment;
         }
 
+        //▶로프 모양 유지를 위한 제약 조건 적용
         //CONSTRAINIS
         //시뮬레이터를 맞친 후 개별 지점에 제약 조건을 적용해야함
         //제약조건을 여러번 적용해야 함.(50배로 적용)
@@ -99,10 +107,9 @@ public class Rop_LHS : MonoBehaviour
         {
             this.ApplyConstraint();
         }
-
     }
 
-    //제약조건
+    //▶로프 형태를 유지하기 위한 제약 조건 적용
     private void ApplyConstraint()
     {
         //1. 로프의 첫 번빼 위치는 항상 마우스 위치를 따릅니다.
@@ -145,7 +152,6 @@ public class Rop_LHS : MonoBehaviour
             Vector3 changeAmount = changeDir * error;
             if (i != 0)
             {
-
                 //0.5틀림
                 firstSeg.posNow -= changeAmount * 0.5f;
                 this.ropeSegments[i] = firstSeg;
@@ -157,11 +163,10 @@ public class Rop_LHS : MonoBehaviour
                 secondSeg.posNow += changeAmount;
                 this.ropeSegments[i + 1] = secondSeg;
             }
-
         }
     }
 
-    //로프 그리기
+    //LineRenderer를 사용하여 로프 그리기
     //라인렌더러의 너비를 설정하고
     //라인렌더러에 추가할 위치배열을 만들 것
     private void DrawRope()
@@ -180,20 +185,5 @@ public class Rop_LHS : MonoBehaviour
 
         lineRenderer.positionCount = ropePositions.Length;
         lineRenderer.SetPositions(ropePositions);
-    }
-
-    //현재 위치와 이전 위치가 순서대로 포함될 예정
-    public struct RopeSegment
-    {
-        //Vector3로 가지 않아도 되나? 점이기 때문에
-
-        public Vector3 posNow;
-        public Vector3 posOld;
-
-        public RopeSegment(Vector3 pos)
-        {
-            this.posNow = pos;
-            this.posOld = pos;
-        }
     }
 }

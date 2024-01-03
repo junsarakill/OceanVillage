@@ -62,10 +62,6 @@ public class BaitMove_LHS : MonoBehaviour
         }
     }
 
-    /* public void BaitAction(int a)
-     {
-         isBaitMove = !isBaitMove;
-     }*/
     public void SetPos()
     {
         endPos.position = startPos;
@@ -86,5 +82,4 @@ public class BaitMove_LHS : MonoBehaviour
             other.GetComponent<FishMove_LHS>().Grab(this.transform);
         }
     }
-
 }

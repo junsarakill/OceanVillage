@@ -10,20 +10,12 @@ public class FishMove_LHS : MonoBehaviour
 
     void Update()
     {
-        //미끼에 물렸을 때 좌우로 이동
-        if (GameManager_LHS.instance.isfishSave == true)
-        {
-            //나중 구현
-        }
-
         //아예 물고기를 잡았을때 미끼 위치로 이동 . 정해진 위치로 이동 (Lerp ?)
         //잡고 나서
         if (GameManager_LHS.instance.isfishLook == true && objectGrab != null)
         {
             //Debug.Log("물고기 미끼위치로" + objectGrab.position);
             transform.position = objectGrab.position;
-            //StartCoroutine(FishingManager.instance.IECatchFish());
-            //StartCoroutine(DestroyFish());
         }
     }
 
@@ -38,7 +30,4 @@ public class FishMove_LHS : MonoBehaviour
     {
         this.objectGrab = objectGrab;
     }
-
-
-
 }
